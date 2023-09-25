@@ -28,7 +28,6 @@ To check cluster ID:
 confluent cluster describe --url http://0.0.0.0:8090
 ~~~
 
-
 To add Role to euler user :
 ~~~
 confluent iam rbac role-binding create --principal User:euler --role SystemAdmin --kafka-cluster zZAvCRqgQ1OZNumPCozEsg
@@ -49,13 +48,11 @@ confluent iam rbac role-binding list --kafka-cluster zZAvCRqgQ1OZNumPCozEsg --pr
 confluent iam rbac role-binding list --kafka-cluster zZAvCRqgQ1OZNumPCozEsg --principal User:euler
 ~~~
 
-
-Start Control center service and access console on public ip of the broker on which c3 is running , you can use :
+Start Control center service and access console on public_ip:9021 of the broker on which c3 is running , you can use :
 Username: gauss
 Password: password
-
 or
-
 Username: euler
 Password: password
+
 

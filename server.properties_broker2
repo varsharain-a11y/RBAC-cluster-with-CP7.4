@@ -1,0 +1,80 @@
+broker.id=2
+num.network.threads=3
+num.io.threads=8
+socket.send.buffer.bytes=102400
+socket.receive.buffer.bytes=102400
+socket.request.max.bytes=104857600
+log.dirs=/var/lib/kafka/broker_2
+log.retention.hours=168
+log.segment.bytes=1073741824
+log.retention.check.interval.ms=300000
+num.partitions=1
+num.recovery.threads.per.data.dir=1
+offsets.topic.replication.factor=3
+transaction.state.log.replication.factor=3
+confluent.balancer.topic.replication.factor=3
+confluent.balancer.heal.broker.failure.threshold.ms=30000
+zookeeper.connect=ec2-3-96-205-37.ca-central-1.compute.amazonaws.com:2181,ec2-35-183-137-36.ca-central-1.compute.amazonaws.com:2181,ec2-35-182-175-66.ca-central-1.compute.amazonaws.com:2181
+zookeeper.connection.timeout.ms=18000
+transaction.state.log.min.isr=1
+group.initial.rebalance.delay.ms=0
+confluent.metadata.topic.replication.factor=3
+confluent.security.event.logger.exporter.kafka.topic.replicas=3
+confluent.license.topic.replication.factor=3
+confluent.balancer.enable=true
+sasl.mechanism.inter.broker.protocol=PLAIN
+listeners=CLIENT://:9092,INTERNAL://:9093,TOKEN://:9094
+advertised.listeners=CLIENT://ec2-35-183-137-36.ca-central-1.compute.amazonaws.com:9092,INTERNAL://ec2-35-183-137-36.ca-central-1.compute.amazonaws.com:9093,TOKEN://ec2-35-183-137-36.ca-central-1.compute.amazonaws.com:9094
+listener.security.protocol.map=CLIENT:SASL_PLAINTEXT,INTERNAL:SASL_PLAINTEXT,TOKEN:SASL_PLAINTEXT
+inter.broker.listener.name=INTERNAL
+sasl.mechanism.inter.broker.protocol=PLAIN
+listener.name.internal.sasl.enabled.mechanisms=PLAIN
+listener.name.internal.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="gauss" password="password" user_gauss="password" user_euler="password";
+listener.name.token.oauthbearer.sasl.login.callback.handler.class=io.confluent.kafka.server.plugins.auth.token.TokenBearerServerLoginCallbackHandler
+listener.name.token.oauthbearer.sasl.server.callback.handler.class=io.confluent.kafka.server.plugins.auth.token.TokenBearerValidatorCallbackHandler
+listener.name.token.oauthbearer.sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required publicKeyPath="/tmp/token/public.pem";
+listener.name.token.sasl.enabled.mechanisms=OAUTHBEARER
+listener.name.token.sasl.mechanism=PLAIN
+confluent.metadata.enable.server.urls.refresh=false
+listener.name.client.sasl.enabled.mechanisms=PLAIN
+listener.name.client.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="gauss" password="password" user_gauss="password" user_euler="password";
+authorizer.class.name=io.confluent.kafka.security.authorizer.ConfluentServerAuthorizer
+confluent.authorizer.access.rule.providers=ZK_ACL,CONFLUENT
+super.users=User:gauss
+confluent.metadata.server.listeners = http://0.0.0.0:8090
+confluent.metadata.server.token.key.path=/tmp/token/tokenKeypair.pem
+confluent.metadata.server.authentication.method=BEARER
+confluent.metadata.default.api.timeout.ms=600000
+confluent.metadata.server.enable=true
+confluent.metadata.server.public.key.path=/tmp/token/public.pem
+confluent.metadata.server.token.auth.enable=true
+confluent.metadata.server.token.signature.algorithm=RS256
+confluent.metadata.server.advertised.listeners=http://ec2-35-183-137-36.ca-central-1.compute.amazonaws.com:8090
+confluent.metadata.server.token.max.lifetime.ms=3600000
+confluent.metadata.server.urls.max.retries=5
+confluent.metadata.enable.server.urls.refresh=false
+kafka.rest.confluent.metadata.enable.server.urls.refresh=false
+ldap.group.member.attribute=uid
+ldap.group.member.attribute.pattern=CN=(.*),DC=example,DC=com
+ldap.group.name.attribute=cn
+ldap.group.object.class=group
+ldap.group.search.base=dc=example,dc=com
+ldap.group.search.scope=1
+ldap.java.naming.provider.url=ldap://ldap.forumsys.com:389
+ldap.java.naming.security.authentication=simple
+ldap.java.naming.security.credentials=password
+ldap.java.naming.security.principal=uid=gauss,dc=example,dc=com
+ldap.user.memberof.attribute.pattern=CN=(.*),DC=example,DC=com
+ldap.user.name.attribute=uid
+ldap.user.object.class=organizationalPerson
+ldap.user.search.base=dc=example,dc=com
+ldap.user.search.scope=2
+confluent.metrics.reporter.bootstrap.servers=ec2-3-96-205-37.ca-central-1.compute.amazonaws.com:9093,ec2-35-183-137-36.ca-central-1.compute.amazonaws.com:9093,ec2-35-182-175-66.ca-central-1.compute.amazonaws.com:9093
+confluent.metrics.reporter.security.protocol=SASL_PLAINTEXT
+confluent.metrics.reporter.sasl.mechanism=PLAIN
+confluent.metrics.reporter.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="gauss" \
+    password="password";
+confluent.metrics.reporter.publish.ms=30000
+sasl.enabled.mechanisms=PLAIN,OAUTHBEARER
+metric.reporters=io.confluent.metrics.reporter.ConfluentMetricsReporter
